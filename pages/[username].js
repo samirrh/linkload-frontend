@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Modal from '../components/Modal';
+import { ModalContext } from '../context/ModalContext';
 
 const Post = () => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const Post = () => {
   const [res, setRes] = useState([]);
   const [letter, setLetter] = useState('');
   const [showDescription, setShowDescription] = useState(false);
+  const { isOpen, setIsOpen } = useContext(ModalContext);
 
   useEffect(() => {
     axios
@@ -69,7 +71,9 @@ const Post = () => {
             </div>
             <button
               className="bg-red-500 w-32 hover:bg-red-400 text-white font-bold py-1 px-2 border-b-4 border-red-700 hover:border-red-500 rounded-full m-1"
-              onClick={() => setShowDescription(true)}
+              onClick={() => {
+                setIsOpen(true);
+              }}
             >
               Description
             </button>
@@ -77,7 +81,7 @@ const Post = () => {
         ))}
       </div>
 
-      {showDescription && <Modal></Modal>}
+      {isOpen && <Modal></Modal>}
     </div>
   );
 };
