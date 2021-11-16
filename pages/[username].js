@@ -6,6 +6,7 @@ const Post = () => {
   const router = useRouter();
   const { username } = router.query;
   const [res, setRes] = useState([]);
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     axios
@@ -21,6 +22,8 @@ const Post = () => {
 
   return (
     <div>
+      <div>{res[0].userName}</div>
+      <div>links</div>
       {res.map((link) => (
         <div key={link.linkId}>{link.url}</div>
       ))}
