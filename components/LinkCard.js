@@ -4,7 +4,7 @@ const LinkCard = ({ key, views, url, linkName, description }) => {
   const { isOpen, setIsOpen, setLinkName, setLinkDescription } =
     useContext(ModalContext);
   return (
-    <div className="h-full">
+    <div>
       <div
         className="bg-indigo-300 grid lg:grid-cols-4 rounded-lg p-3 mb-1 place-items-center"
         key={key}

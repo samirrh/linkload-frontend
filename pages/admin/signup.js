@@ -1,17 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 
-function login() {
+function signup() {
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
             <h2 className="mt-6 text-center text-6xl font-extrabold text-indigo-700">
-              Log In
+              Sign Up
             </h2>
             <p className="mt-2 text-center font-medium text-blue-600 hover:text-blue-500">
-              Or <Link href="/admin/signup">Sign Up for an Account!</Link>
+              Or <Link href="/admin/login">Log in to your Account!</Link>
             </p>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
@@ -68,7 +68,7 @@ function login() {
                     />
                   </svg>
                 </span>
-                Log In
+                Sign Up
               </button>
             </div>
           </form>
@@ -78,4 +78,4 @@ function login() {
   );
 }
 
-export default login;
+export default signup;
