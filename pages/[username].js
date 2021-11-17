@@ -26,7 +26,7 @@ const Post = () => {
   }, [username]);
 
   return (
-    <div className="bg-indigo-100 pt-10 h-full">
+    <body className="bg-indigo-100 pt-10">
       <div>
         <div className="flex justify-center">
           <div className="rounded-full h-24 w-24 flex items-center justify-center bg-indigo-300 font-bold text-white text-5xl grid">
@@ -46,9 +46,8 @@ const Post = () => {
           />
         ))}
       </div>
-
       {isOpen && <Modal></Modal>}
-    </div>
+    </body>
   );
 };
 
