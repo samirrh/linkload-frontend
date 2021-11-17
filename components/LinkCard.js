@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import { ModalContext } from '../context/ModalContext';
-const LinkCard = ({ key, views, url, linkName, description }) => {
+const LinkCard = ({ linkId, views, url, linkName, description }) => {
   const { isOpen, setIsOpen, setLinkName, setLinkDescription } =
     useContext(ModalContext);
   return (
     <div>
       <div
         className="bg-indigo-300 grid lg:grid-cols-4 rounded-lg p-3 mb-1 place-items-center"
-        key={key}
+        key={linkId}
       >
         <div className="m-1">{linkName}</div>
         <div className="m-1 grid grid-cols-2">

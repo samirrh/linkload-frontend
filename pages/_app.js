@@ -5,9 +5,7 @@ import { ModalProvider } from '../context/ModalContext';
 function MyApp({ Component, pageProps }) {
   return (
     <ModalProvider value={false}>
-      <body className="bg-indigo-100 h-full">
-        <Component {...pageProps} />
-      </body>
+      <Component {...pageProps} />
     </ModalProvider>
   );
 }

@@ -39,6 +39,7 @@ const Post = () => {
         {res.map((link) => (
           <LinkCard
             key={link?.linkId}
+            linkId={link?.linkId}
             views={link?.views}
             url={link?.url}
             linkName={link?.linkName}
