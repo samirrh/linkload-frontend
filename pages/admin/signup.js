@@ -9,9 +9,6 @@ function signup() {
   const [password, setPassword] = useState('');
   const router = useRouter();
   const signup = () => {
-    console.log('user: ' + username);
-    console.log('email: ' + email);
-    console.log('password: ' + password);
     axios
       .post(`http://localhost:8080/api/auth/signup`, {
         username: String(username),
@@ -20,7 +17,7 @@ function signup() {
       })
       .then((response) => {
         console.log(response);
-        router.push('/admin/activate');
+        router.push('/admin/sent');
       })
       .catch((error) => {
         console.log(error);
