@@ -21,7 +21,7 @@ function login() {
           localStorage.setItem('refreshToken', data.refreshToken);
           localStorage.setItem('expiresAt', data.expiresAt);
         }
-        //router.push('/admin/sent');
+        router.push('/admin');
       })
       .catch((error) => {
         console.log(error);
