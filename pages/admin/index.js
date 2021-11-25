@@ -46,7 +46,7 @@ const index = () => {
     };
 
     axios
-      .delete('http://localhost:8080/api/link/69', config)
+      .delete('http://localhost:8080/api/link/27', config)
       .then((res) => {
         console.log(res);
       })
@@ -71,7 +71,7 @@ const index = () => {
       showViews: true,
     };
     axios
-      .put('http://localhost:8080/api/link/27', bodyParameters, config)
+      .put('http://localhost:8080/api/link/28', bodyParameters, config)
       .then((res) => {
         console.log(res);
       })
@@ -150,6 +150,8 @@ const index = () => {
                 linkName={link?.linkName}
                 description={link?.description}
                 isLoggedIn={true}
+                deleteLink={deleteLink}
+                updateLink={updateLink}
               />
             ))}
           </div>
