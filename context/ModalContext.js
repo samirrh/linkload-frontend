@@ -5,6 +5,7 @@ const ModalProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [linkName, setLinkName] = useState('');
   const [linkDescription, setLinkDescription] = useState('');
+  const [url, setUrl] = useState('');
   return (
     <ModalContext.Provider
       value={{
@@ -14,6 +15,8 @@ const ModalProvider = ({ children }) => {
         setLinkName,
         linkDescription,
         setLinkDescription,
+        url,
+        setUrl,
       }}
     >
       {children}

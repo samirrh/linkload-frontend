@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { ModalContext } from '../context/ModalContext';
 const Modal = () => {
-  const { setIsOpen, linkName, linkDescription } = useContext(ModalContext);
+  const { setIsOpen, linkName, linkDescription, url } =
+    useContext(ModalContext);
   return (
     <div>
       <div
@@ -35,7 +36,14 @@ const Modal = () => {
                     {linkName}
                   </h3>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">{linkDescription}</p>
+                    <p className="text-sm text-gray-500">
+                      Description: {linkDescription}
+                    </p>
+                  </div>
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-500">
+                      URL: <a href={url}> {url} </a>{' '}
+                    </p>
                   </div>
                 </div>
               </div>

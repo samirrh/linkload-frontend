@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react';
+import link from 'next/link';
+import { useContext, useState, useEffect } from 'react';
 import { ModalContext } from '../context/ModalContext';
 const LinkCard = ({
   linkId,
@@ -10,8 +11,27 @@ const LinkCard = ({
   passUpLink,
   isLoggedIn,
 }) => {
-  const { isOpen, setIsOpen, setLinkName, setLinkDescription } =
+  const { isOpen, setIsOpen, setLinkName, setLinkDescription, setUrl } =
     useContext(ModalContext);
+
+  const [hrefUrl, setHrefUrl] = useState('');
+  const [displayUrl, setDisplayUrl] = useState('');
+
+  useEffect(() => {
+    const validateUrl = () => {
+      if (url.substring(0, 8) === 'https://') {
+        setHrefUrl(url);
+        setDisplayUrl(url.substring(8));
+      } else {
+        setHrefUrl('https://' + url);
+        setDisplayUrl(url);
+      }
+      if (url.substring(8).length > 20) {
+        setDisplayUrl('link');
+      }
+    };
+    validateUrl();
+  }, [url]);
 
   let gridNum = isLoggedIn ? 5 : 4;
   return (
@@ -45,20 +65,23 @@ const LinkCard = ({
       </div>
 
       <div className="m-1">
-        <a href={url}>{url}</a>
+        <a href={hrefUrl} target="_blank" rel="noreferrer">
+          {displayUrl}
+        </a>
       </div>
       <button
         className="bg-purple-500 w-32 hover:bg-purple-400 text-white font-bold py-1 px-2 border-b-4 my-1 border-purple-700 hover:border-purple-500 rounded-full"
         onClick={() => {
           setLinkName(linkName);
           setLinkDescription(description);
+          setUrl(hrefUrl);
           setIsOpen(true);
         }}
       >
         Description
       </button>
       {isLoggedIn && (
-        <div className="flex gap-6">
+        <div className="flex gap-6 mt-2">
           <button
             className="rounded-full h-10 w-10 flex items-center justify-center bg-indigo-700 font-bold text-white"
             onClick={() => deleteLink(linkId)}

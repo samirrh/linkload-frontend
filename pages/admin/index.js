@@ -62,6 +62,9 @@ const index = () => {
         if (typeof window !== 'undefined') {
           const username = localStorage.getItem('username');
           getAllLinks(username);
+          if (editMode) {
+            resetForm();
+          }
         }
       })
       .catch((error) => {
