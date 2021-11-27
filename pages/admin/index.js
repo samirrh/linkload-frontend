@@ -113,26 +113,65 @@ const index = () => {
               {letter}
             </div>
           </div>
-          <div className="grid grid-cols-1 px-4 ">
-            <div className="bg-indigo-300 grid lg:grid-cols-3 gap-2 rounded-lg p-3 mb-1 place-items-center">
-              <button
-                className="py-2 px-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 "
-                onClick={() => createLink()}
-              >
-                NEW LINK
-              </button>
-              <button
-                className="py-2 px-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 "
-                onClick={() => deleteLink()}
-              >
-                DELETE LINK
-              </button>
-              <button
-                className="py-2 px-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 "
-                onClick={() => updateLink()}
-              >
-                UPDATE LINK
-              </button>
+          <div className="grid grid-cols-1 px-4">
+            <div className="bg-indigo-300 rounded-lg px-5 pb-5 pt-3 mb-1 place-items-center">
+              <div className="flex justify-center items-center mb-3">
+                <label className="block text-indigo-800 font-bold text-xl">
+                  Add New Link
+                </label>
+              </div>
+              <form className="w-full max-w-sm">
+                <div className="md:flex md:items-center mb-6">
+                  <div className="md:w-1/3">
+                    <label className="block text-indigo-800 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                      Link Name
+                    </label>
+                  </div>
+                  <div className="md:w-2/3">
+                    <input
+                      className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                      id="inline-full-name"
+                      type="text"
+                      value=""
+                      placeholder="linkName"
+                    />
+                  </div>
+                </div>
+                <div className="md:flex md:items-center mb-6">
+                  <div className="md:w-1/3">
+                    <label className="block text-indigo-800 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                      URL
+                    </label>
+                  </div>
+                  <div className="md:w-2/3">
+                    <input
+                      className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                      placeholder="url"
+                    />
+                  </div>
+                </div>
+                <div className="md:flex md:items-center mb-6">
+                  <div className="md:w-1/3">
+                    <label className="block text-indigo-800 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                      Description
+                    </label>
+                  </div>
+                  <div className="md:w-2/3">
+                    <textarea
+                      className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                      placeholder="Description"
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-center items-center">
+                  <button
+                    className="bg-indigo-700 hover:bg-indigo-500 text-white font-bold py-1 px-3 border-b-4 my-1 border-indigo-500 hover:border-indigo-200 rounded-full"
+                    type="button"
+                  >
+                    Create
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
