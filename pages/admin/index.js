@@ -106,7 +106,7 @@ const index = () => {
 
   return (
     <div className="flex grid-cols-2">
-      <div className="mx-4 mb-4">
+      <div className="ml-4 mb-4">
         <div className="">
           <div className="flex justify-center mb-4 mt-8">
             <div className="rounded-full h-24 w-24 flex items-center justify-center bg-indigo-700 font-bold text-white text-5xl grid">
@@ -165,7 +165,7 @@ const index = () => {
                 </div>
                 <div className="flex justify-center items-center">
                   <button
-                    className="bg-indigo-700 hover:bg-indigo-500 text-white font-bold py-1 px-3 border-b-4 my-1 border-indigo-500 hover:border-indigo-200 rounded-full"
+                    className="bg-indigo-700 hover:bg-indigo-500 text-white font-bold py-1 px-3 border-b-4 border-indigo-500 hover:border-indigo-200 rounded-full"
                     type="button"
                   >
                     Create
@@ -176,7 +176,7 @@ const index = () => {
           </div>
         </div>
       </div>
-      <div className="mx-4 mb-4 mt-7">
+      <div className="mr-4 ml-1 mb-4 mt-7">
         <div className="">
           <div className="grid grid-cols-1 gap-4 ">
             <div className="bg-purple-300 grid lg:grid-cols-4 rounded-lg p-3 mb-1 place-items-center h-24">
