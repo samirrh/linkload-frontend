@@ -31,6 +31,10 @@ const index = () => {
       .post('http://localhost:8080/api/link', bodyParameters, config)
       .then((res) => {
         console.log(res);
+        if (typeof window !== 'undefined') {
+          const username = localStorage.getItem('username');
+          getAllLinks(username);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -167,6 +171,7 @@ const index = () => {
                   <button
                     className="bg-indigo-700 hover:bg-indigo-500 text-white font-bold py-1 px-3 border-b-4 border-indigo-500 hover:border-indigo-200 rounded-full"
                     type="button"
+                    onClick={createLink}
                   >
                     Create
                   </button>
