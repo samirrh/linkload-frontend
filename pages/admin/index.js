@@ -10,6 +10,9 @@ const index = () => {
   const [res, setRes] = useState(Array);
   const [letter, setLetter] = useState('');
   const { isOpen } = useContext(ModalContext);
+  const [url, setUrl] = useState('');
+  const [linkName, setLinkName] = useState('');
+  const [description, setDescription] = useState('');
 
   const createLink = () => {
     if (typeof window !== 'undefined') {
@@ -20,17 +23,18 @@ const index = () => {
     };
 
     const bodyParameters = {
-      linkName: 'FROM FRONTEND',
-      description: 'BODY PARAM',
-      url: 'https://www.ETH.ca/',
-      views: 2000,
-      showViews: false,
+      linkName: linkName,
+      description: description,
+      url: url,
+      views: 0,
+      showViews: true,
     };
 
     axios
       .post('http://localhost:8080/api/link', bodyParameters, config)
       .then((res) => {
         console.log(res);
+        //when you have time make response of post, delete, update be all for that user possibly if they arent used anywhere else
         if (typeof window !== 'undefined') {
           const username = localStorage.getItem('username');
           getAllLinks(username);
@@ -136,8 +140,9 @@ const index = () => {
                       className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       id="inline-full-name"
                       type="text"
-                      value=""
+                      value={linkName}
                       placeholder="linkName"
+                      onChange={(e) => setLinkName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -151,6 +156,8 @@ const index = () => {
                     <input
                       className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       placeholder="url"
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
                     />
                   </div>
                 </div>
@@ -164,6 +171,8 @@ const index = () => {
                     <textarea
                       className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       placeholder="Description"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
                 </div>
