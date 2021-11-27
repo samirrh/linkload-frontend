@@ -37,7 +37,7 @@ const index = () => {
       });
   };
 
-  const deleteLink = () => {
+  const deleteLink = (linkId) => {
     if (typeof window !== 'undefined') {
       var token = localStorage.getItem('authToken');
     }
@@ -46,9 +46,13 @@ const index = () => {
     };
 
     axios
-      .delete('http://localhost:8080/api/link/27', config)
+      .delete(`http://localhost:8080/api/link/${linkId}`, config)
       .then((res) => {
         console.log(res);
+        if (typeof window !== 'undefined') {
+          const username = localStorage.getItem('username');
+          getAllLinks(username);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -80,10 +84,7 @@ const index = () => {
       });
   };
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const username = localStorage.getItem('username');
-    }
+  const getAllLinks = (username) => {
     axios
       .get(`http://localhost:8080/api/link/user/${username}`)
       .then((response) => {
@@ -94,6 +95,13 @@ const index = () => {
       .catch((error) => {
         console.log('WTF');
       });
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const username = localStorage.getItem('username');
+      getAllLinks(username);
+    }
   }, []);
 
   return (
