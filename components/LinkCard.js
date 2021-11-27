@@ -7,7 +7,7 @@ const LinkCard = ({
   linkName,
   description,
   deleteLink,
-  updateLink,
+  passUpLink,
   isLoggedIn,
 }) => {
   const { isOpen, setIsOpen, setLinkName, setLinkDescription } =
@@ -80,7 +80,7 @@ const LinkCard = ({
           </button>
           <button
             className="rounded-full h-10 w-10 flex items-center justify-center bg-indigo-700 font-bold text-white"
-            onClick={updateLink}
+            onClick={() => passUpLink(linkName, url, description, linkId)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

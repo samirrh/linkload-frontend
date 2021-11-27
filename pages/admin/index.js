@@ -13,6 +13,8 @@ const index = () => {
   const [url, setUrl] = useState('');
   const [linkName, setLinkName] = useState('');
   const [description, setDescription] = useState('');
+  const [linkId, setLinkId] = useState('');
+  const [editMode, setEditMode] = useState(false);
 
   const createLink = () => {
     if (typeof window !== 'undefined') {
@@ -67,6 +69,22 @@ const index = () => {
       });
   };
 
+  const fillFormFromLink = (linkName, url, description, linkId) => {
+    setLinkName(linkName);
+    setUrl(url);
+    setDescription(description);
+    setLinkId(linkId);
+    setEditMode(true);
+  };
+
+  const resetForm = () => {
+    setLinkName('');
+    setUrl('');
+    setDescription('');
+    setLinkId('');
+    setEditMode(false);
+  };
+
   const updateLink = () => {
     if (typeof window !== 'undefined') {
       var token = localStorage.getItem('authToken');
@@ -76,16 +94,19 @@ const index = () => {
     };
 
     const bodyParameters = {
-      linkName: 'UPDATED FROM FRONTEND',
-      description: 'UPDATED FROM BODY PARAM',
-      url: 'https://www.ETH.ca/',
-      views: 123,
-      showViews: true,
+      linkName: linkName,
+      description: description,
+      url: url,
     };
     axios
-      .put('http://localhost:8080/api/link/28', bodyParameters, config)
+      .put(`http://localhost:8080/api/link/${linkId}`, bodyParameters, config)
       .then((res) => {
         console.log(res);
+        if (typeof window !== 'undefined') {
+          const username = localStorage.getItem('username');
+          getAllLinks(username);
+          resetForm();
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -125,7 +146,7 @@ const index = () => {
             <div className="bg-indigo-300 rounded-lg px-5 pb-5 pt-3 mb-1 place-items-center">
               <div className="flex justify-center items-center mb-3">
                 <label className="block text-indigo-800 font-bold text-xl">
-                  Add New Link
+                  {editMode ? 'Edit Link' : 'Add New Link'}
                 </label>
               </div>
               <form className="w-full max-w-sm">
@@ -180,10 +201,19 @@ const index = () => {
                   <button
                     className="bg-indigo-700 hover:bg-indigo-500 text-white font-bold py-1 px-3 border-b-4 border-indigo-500 hover:border-indigo-200 rounded-full"
                     type="button"
-                    onClick={createLink}
+                    onClick={editMode ? updateLink : createLink}
                   >
-                    Create
+                    {editMode ? 'Update' : 'Create'}
                   </button>
+                  {editMode && (
+                    <button
+                      className="bg-indigo-700 hover:bg-indigo-500 text-white font-bold py-1 px-3 border-b-4 border-indigo-500 hover:border-indigo-200 rounded-full mx-3"
+                      type="button"
+                      onClick={resetForm}
+                    >
+                      Cancel
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
@@ -212,7 +242,7 @@ const index = () => {
                 description={link?.description}
                 isLoggedIn={true}
                 deleteLink={deleteLink}
-                updateLink={updateLink}
+                passUpLink={fillFormFromLink}
               />
             ))}
           </div>
