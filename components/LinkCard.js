@@ -18,12 +18,25 @@ const LinkCard = ({
   const [displayUrl, setDisplayUrl] = useState('');
 
   useEffect(() => {
+    const timeOut = (url) => {
+      console.log(linkId);
+      setTimeout(() => {
+        window.location.href = url;
+      }, 5000); // hard coded time but allow user to pick time
+    };
     const validateUrl = () => {
       if (url.substring(0, 8) === 'https://') {
         setHrefUrl(url);
         setDisplayUrl(url.substring(8));
+        if (linkId == 121) {
+          // hard coded linkId match now but allow user to choose link to redirect
+          timeOut(url);
+        }
       } else {
         setHrefUrl('https://' + url);
+        if (linkId == 121) {
+          timeOut('https://' + url);
+        }
         setDisplayUrl(url);
       }
       if (url.substring(8).length > 20) {
