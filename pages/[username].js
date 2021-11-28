@@ -13,16 +13,19 @@ const Post = () => {
   const { isOpen } = useContext(ModalContext);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/link/user/${username}`)
-      .then((response) => {
-        console.log(response.data);
-        setRes(response.data);
-        setLetter(username.charAt(0));
-      })
-      .catch((error) => {
-        console.log('WTF');
-      });
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:8080/api/link/user/${username}`)
+        .then((response) => {
+          console.log(response.data);
+          setRes(response.data);
+          setLetter(username.charAt(0));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    fetchData();
   }, [username]);
 
   return (
@@ -36,6 +39,7 @@ const Post = () => {
         <div className="flex justify-center mt-2 text-2xl">{username}</div>
       </div>
       <div className="grid grid-cols-1 gap-4 p-10">
+        <script>                </script>
         {res.map((link) => (
           <LinkCard
             key={link?.linkId}
